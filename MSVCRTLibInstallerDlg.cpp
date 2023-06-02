@@ -1,4 +1,4 @@
-﻿
+
 // MSVCRTLibInstallerDlg.cpp: 구현 파일
 //
 
@@ -7,6 +7,8 @@
 #include "MSVCRTLibInstaller.h"
 #include "MSVCRTLibInstallerDlg.h"
 #include "afxdialogex.h"
+
+#include "MsiManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -66,6 +68,7 @@ BEGIN_MESSAGE_MAP(CMSVCRTLibInstallerDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON1, &CMSVCRTLibInstallerDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -154,3 +157,14 @@ HCURSOR CMSVCRTLibInstallerDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CMSVCRTLibInstallerDlg::OnBnClickedButton1()
+{
+	CMsiManager * mgr = new CMsiManager(L"E:\\Setup1.msi");
+	mgr->Open();
+	//mgr->SetInstallOption();
+	mgr->Install();
+
+	
+}

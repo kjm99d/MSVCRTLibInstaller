@@ -33,4 +33,5 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CProgressCtrl m_progress;
+	afx_msg void OnBnClickedButton1();
 };

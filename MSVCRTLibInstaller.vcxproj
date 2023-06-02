@@ -194,6 +194,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="MsiManager.h" />
     <ClInclude Include="MSVCRTLibInstaller.h" />
     <ClInclude Include="MSVCRTLibInstallerDlg.h" />
     <ClInclude Include="pch.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MsiManager.cpp" />
     <ClCompile Include="MSVCRTLibInstaller.cpp" />
     <ClCompile Include="MSVCRTLibInstallerDlg.cpp" />
     <ClCompile Include="pch.cpp">
