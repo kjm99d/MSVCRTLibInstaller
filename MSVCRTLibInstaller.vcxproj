@@ -98,6 +98,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -122,6 +123,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -197,6 +199,7 @@
     <ClInclude Include="MsiManager.h" />
     <ClInclude Include="MSVCRTLibInstaller.h" />
     <ClInclude Include="MSVCRTLibInstallerDlg.h" />
+    <ClInclude Include="MSVCRTManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
@@ -205,6 +208,7 @@
     <ClCompile Include="MsiManager.cpp" />
     <ClCompile Include="MSVCRTLibInstaller.cpp" />
     <ClCompile Include="MSVCRTLibInstallerDlg.cpp" />
+    <ClCompile Include="MSVCRTManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -9,6 +9,7 @@
 #include "afxdialogex.h"
 
 #include "MsiManager.h"
+#include "MSVCRTManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -161,10 +162,17 @@ HCURSOR CMSVCRTLibInstallerDlg::OnQueryDragIcon()
 
 void CMSVCRTLibInstallerDlg::OnBnClickedButton1()
 {
-	CMsiManager * mgr = new CMsiManager(L"E:\\Setup1.msi");
-	mgr->Open();
+	std::wstring strPath = L"D:\\Test\\VC_redist.x86.exe";
+	//CMsiManager * mgr = new CMsiManager(L"D:\\Test\\VC_redist.x86.exe");
+	//mgr->Open();
 	//mgr->SetInstallOption();
-	mgr->Install();
+	//mgr->Install();
 
-	
+	CMSVCRTManager mngr(strPath);
+	mngr.SetInstallOption(
+		(int)CMSVCRTManager::eInstallType::eInstall |
+		(int)CMSVCRTManager::eInstallType::eNoRestart |
+		(int)CMSVCRTManager::eInstallType::eQuiet
+	);
+	mngr.Install();
 }

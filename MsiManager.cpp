@@ -42,9 +42,17 @@ BOOL CMsiManager::SetInstallOption()
 BOOL CMsiManager::Install()
 {
     BOOL bResult = FALSE;
-    if (ERROR_SUCCESS == MsiInstallProductW(m_strFilePath.c_str(), nullptr, ))
+    UINT nResult = MsiInstallProductW(m_strFilePath.c_str(), L"");
+    if (ERROR_SUCCESS == nResult)
     {
         bResult = TRUE;
+    }
+    else
+    {
+        DWORD dwErr = GetLastError();
+        WCHAR szMsg[1024] = { 0, };
+        swprintf_s(szMsg, _countof(szMsg), L"ProductW [%d], Last Error [%d]", nResult, szMsg);
+        OutputDebugString(szMsg);
     }
 
     return bResult;
