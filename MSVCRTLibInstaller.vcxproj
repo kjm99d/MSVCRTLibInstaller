@@ -223,7 +223,10 @@
     <None Include="res\MSVCRTLibInstaller.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\bitmap1.bmp" />
+    <Image Include="res\logo.bmp" />
     <Image Include="res\MSVCRTLibInstaller.ico" />
+    <Image Include="res\Visual_Studio_Icon_2019.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
