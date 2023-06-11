@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\MSVCXXXX">
+      <UniqueIdentifier>{20195587-8782-4b83-bee3-b5f559ee6e79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\MSVCXXXX">
+      <UniqueIdentifier>{efbe87dd-3203-4cc6-a19c-80209cbde16b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MSI">
+      <UniqueIdentifier>{385db8b0-4e1a-4d64-8ec9-c48d4ccba1e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\MSI">
+      <UniqueIdentifier>{e11a1608-a139-49f4-a53a-b1711893be8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MSVCRTLibInstaller.h">
@@ -33,8 +45,29 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="MSVC2008.h">
+      <Filter>헤더 파일\MSVCXXXX</Filter>
+    </ClInclude>
+    <ClInclude Include="IMSVCVersion.h">
+      <Filter>헤더 파일\MSVCXXXX</Filter>
+    </ClInclude>
     <ClInclude Include="MsiManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\MSI</Filter>
+    </ClInclude>
+    <ClInclude Include="MSVC2005.h">
+      <Filter>헤더 파일\MSVCXXXX</Filter>
+    </ClInclude>
+    <ClInclude Include="MSVC2010.h">
+      <Filter>헤더 파일\MSVCXXXX</Filter>
+    </ClInclude>
+    <ClInclude Include="MSVC2012.h">
+      <Filter>헤더 파일\MSVCXXXX</Filter>
+    </ClInclude>
+    <ClInclude Include="MSVC2013.h">
+      <Filter>헤더 파일\MSVCXXXX</Filter>
+    </ClInclude>
+    <ClInclude Include="MSVC2015.h">
+      <Filter>헤더 파일\MSVCXXXX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -47,8 +80,29 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="MSVC2008.cpp">
+      <Filter>소스 파일\MSVCXXXX</Filter>
+    </ClCompile>
     <ClCompile Include="MsiManager.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\MSI</Filter>
+    </ClCompile>
+    <ClCompile Include="MSVC2012.cpp">
+      <Filter>소스 파일\MSVCXXXX</Filter>
+    </ClCompile>
+    <ClCompile Include="MSVC2013.cpp">
+      <Filter>소스 파일\MSVCXXXX</Filter>
+    </ClCompile>
+    <ClCompile Include="MSVC2015.cpp">
+      <Filter>소스 파일\MSVCXXXX</Filter>
+    </ClCompile>
+    <ClCompile Include="MSVC2005.cpp">
+      <Filter>소스 파일\MSVCXXXX</Filter>
+    </ClCompile>
+    <ClCompile Include="MSVC2010.cpp">
+      <Filter>소스 파일\MSVCXXXX</Filter>
+    </ClCompile>
+    <ClCompile Include="IMSVCVersion.cpp">
+      <Filter>소스 파일\MSVCXXXX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +117,15 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\MSVCRTLibInstaller.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\logo.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\Visual_Studio_Icon_2019.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

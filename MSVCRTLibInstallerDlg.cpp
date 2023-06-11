@@ -9,7 +9,6 @@
 #include "afxdialogex.h"
 
 #include "MsiManager.h"
-#include "MSVCRTManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -187,41 +186,71 @@ void CMSVCRTLibInstallerDlg::InstallAll()
 {
 	int nCountInstall = GetInstallCount();
 
-	Install(&m_btnVc2015, L"https://aka.ms/vs/17/release/vc_redist.x86.exe");
-	Install(&m_btnVc2015, L"https://aka.ms/vs/17/release/vc_redist.x64.exe");
+	// VS2005
+	m_Vc2005.SetInstallURLx86(L"https://download.microsoft.com/download/1/E/4/1E4D029E-1D34-4CA8-B269-2CFEB91BD066/vcredist_x86.EXE");
+	m_Vc2005.SetInstallURLx64(L"https://download.microsoft.com/download/1/E/4/1E4D029E-1D34-4CA8-B269-2CFEB91BD066/vcredist_x64.EXE");
+	m_Vc2005.SetArguments(static_cast<int>(eInstallType::eQuiet));
 
-	Install(&m_btnVc2013, L"https://aka.ms/highdpimfc2013x86enu");
-	Install(&m_btnVc2013, L"https://aka.ms/highdpimfc2013x64enu");
+	// VS2008
+	m_Vc2008.SetInstallURLx86(L"https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe");
+	m_Vc2008.SetInstallURLx64(L"https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe");
+	m_Vc2008.SetArguments(static_cast<int>(eInstallType::eQuiet));
 
-	Install(&m_btnVc2012, L"https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe");
-	Install(&m_btnVc2012, L"https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe");
 
-	Install(&m_btnVc2010, L"https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe");
-	Install(&m_btnVc2010, L"https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe");
+	// VS2010
+	m_Vc2010.SetInstallURLx86(L"https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe");
+	m_Vc2010.SetInstallURLx64(L"https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe");
+	m_Vc2010.SetArguments(
+		static_cast<int>(eInstallType::eQuiet) |
+		static_cast<int>(eInstallType::eNoRestart)
+	);
 
-	Install(&m_btnVc2008, L"https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe");
-	Install(&m_btnVc2008, L"https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe");
-	
-	Install(&m_btnVc2005, L"https://download.microsoft.com/download/1/E/4/1E4D029E-1D34-4CA8-B269-2CFEB91BD066/vcredist_x86.EXE");
-	Install(&m_btnVc2005, L"https://download.microsoft.com/download/1/E/4/1E4D029E-1D34-4CA8-B269-2CFEB91BD066/vcredist_x64.EXE");
+	// VS2012
+	m_Vc2012.SetInstallURLx86(L"https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe");
+	m_Vc2012.SetInstallURLx64(L"https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe");
+	m_Vc2012.SetArguments(
+		static_cast<int>(eInstallType::eInstall) |
+		static_cast<int>(eInstallType::eQuiet) |
+		static_cast<int>(eInstallType::eNoRestart)
+	);
+
+	// VS2013
+	m_Vc2013.SetInstallURLx86(L"https://aka.ms/highdpimfc2013x86enu");
+	m_Vc2013.SetInstallURLx64(L"https://aka.ms/highdpimfc2013x64enu");
+	m_Vc2013.SetArguments(
+		static_cast<int>(eInstallType::eInstall) |
+		static_cast<int>(eInstallType::eQuiet) |
+		static_cast<int>(eInstallType::eNoRestart)
+	);
+
+	// VS2015
+	m_Vc2015.SetInstallURLx86(L"https://aka.ms/vs/17/release/vc_redist.x86.exe");
+	m_Vc2015.SetInstallURLx64(L"https://aka.ms/vs/17/release/vc_redist.x64.exe");
+	m_Vc2015.SetArguments(
+		static_cast<int>(eInstallType::eInstall) |
+		static_cast<int>(eInstallType::eQuiet) |
+		static_cast<int>(eInstallType::eNoRestart)
+	);
+
+
+	Install(&m_btnVc2005, &m_Vc2005);
+	Install(&m_btnVc2008, &m_Vc2008);
+	Install(&m_btnVc2010, &m_Vc2010);
+	Install(&m_btnVc2012, &m_Vc2012);
+	Install(&m_btnVc2013, &m_Vc2013);
+	Install(&m_btnVc2015, &m_Vc2015);
+
 }
 
-BOOL CMSVCRTLibInstallerDlg::Install(CButton* pButton, std::wstring strInstallerURL)
+BOOL CMSVCRTLibInstallerDlg::Install(CButton* pButton, IMSVCVersion * inst)
 {
-	URLDownloadToFileW(NULL, strInstallerURL.c_str(), L"Install.exe", 0, NULL);
+	
 
 	BOOL  bResult = FALSE;
+
 	if (pButton->GetCheck() == BST_CHECKED)
 	{
-		CMSVCRTManager mngr(L"Install.exe");
-		mngr.SetInstallOption(
-			//(int)CMSVCRTManager::eInstallType::eInstall |
-			//(int)CMSVCRTManager::eInstallType::eNoRestart |
-			(int)CMSVCRTManager::eInstallType::eQuiet
-		);
-		
-		bResult = mngr.Install();
-		
+		bResult = inst->Install();
 	}
 
 	return bResult;

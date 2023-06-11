@@ -196,19 +196,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="IMSVCVersion.h" />
     <ClInclude Include="MsiManager.h" />
+    <ClInclude Include="MSVC2005.h" />
+    <ClInclude Include="MSVC2008.h" />
+    <ClInclude Include="MSVC2010.h" />
+    <ClInclude Include="MSVC2012.h" />
+    <ClInclude Include="MSVC2013.h" />
+    <ClInclude Include="MSVC2015.h" />
     <ClInclude Include="MSVCRTLibInstaller.h" />
     <ClInclude Include="MSVCRTLibInstallerDlg.h" />
-    <ClInclude Include="MSVCRTManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="IMSVCVersion.cpp" />
     <ClCompile Include="MsiManager.cpp" />
+    <ClCompile Include="MSVC2005.cpp" />
+    <ClCompile Include="MSVC2008.cpp" />
+    <ClCompile Include="MSVC2010.cpp" />
+    <ClCompile Include="MSVC2012.cpp" />
+    <ClCompile Include="MSVC2013.cpp" />
+    <ClCompile Include="MSVC2015.cpp" />
     <ClCompile Include="MSVCRTLibInstaller.cpp" />
     <ClCompile Include="MSVCRTLibInstallerDlg.cpp" />
-    <ClCompile Include="MSVCRTManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

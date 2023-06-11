@@ -4,6 +4,13 @@
 
 #pragma once
 #include <string>
+#include "IMSVCVersion.h"
+#include "MSVC2005.h"
+#include "MSVC2008.h"
+#include "MSVC2010.h"
+#include "MSVC2012.h"
+#include "MSVC2013.h"
+#include "MSVC2015.h"
 
 // CMSVCRTLibInstallerDlg 대화 상자
 class CMSVCRTLibInstallerDlg : public CDialogEx
@@ -35,7 +42,7 @@ protected:
 private:
 	int GetInstallCount();
 	void InstallAll();
-	BOOL Install(CButton* pButton, std::wstring strInstallerURL);
+	BOOL Install(CButton* pButton, IMSVCVersion* inst);
 
 public:
 	CProgressCtrl m_progress;
@@ -46,4 +53,14 @@ public:
 	CButton m_btnVc2010;
 	CButton m_btnVc2008;
 	CButton m_btnVc2005;
+
+
+	CMSVC2015 m_Vc2015;
+	CMSVC2013 m_Vc2013;
+	CMSVC2012 m_Vc2012;
+	CMSVC2010 m_Vc2010;
+	CMSVC2008 m_Vc2008;
+	CMSVC2005 m_Vc2005;
+
+
 };
