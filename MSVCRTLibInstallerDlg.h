@@ -1,9 +1,9 @@
-﻿
+
 // MSVCRTLibInstallerDlg.h: 헤더 파일
 //
 
 #pragma once
-
+#include <string>
 
 // CMSVCRTLibInstallerDlg 대화 상자
 class CMSVCRTLibInstallerDlg : public CDialogEx
@@ -31,7 +31,19 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+
+private:
+	int GetInstallCount();
+	void InstallAll();
+	BOOL Install(CButton* pButton, std::wstring strInstallerURL);
+
 public:
 	CProgressCtrl m_progress;
 	afx_msg void OnBnClickedButton1();
+	CButton m_btnVc2015;
+	CButton m_btnVc2013;
+	CButton m_btnVc2012;
+	CButton m_btnVc2010;
+	CButton m_btnVc2008;
+	CButton m_btnVc2005;
 };

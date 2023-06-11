@@ -67,6 +67,7 @@ void CMSVCRTManager::SetInstallOption(int typeMask)
     
     if (typeMask & static_cast<int>(CMSVCRTManager::eInstallType::eQuiet))
     {
+        //m_strArguments.append(L"/q ");
         m_strArguments.append(L"/quiet ");
 
     }

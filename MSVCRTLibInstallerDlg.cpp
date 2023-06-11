@@ -63,6 +63,12 @@ void CMSVCRTLibInstallerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_PROGRESS1, m_progress);
+	DDX_Control(pDX, IDC_CHECK1, m_btnVc2015);
+	DDX_Control(pDX, IDC_CHECK4, m_btnVc2013);
+	DDX_Control(pDX, IDC_CHECK3, m_btnVc2012);
+	DDX_Control(pDX, IDC_CHECK2, m_btnVc2010);
+	DDX_Control(pDX, IDC_CHECK5, m_btnVc2008);
+	DDX_Control(pDX, IDC_CHECK6, m_btnVc2005);
 }
 
 BEGIN_MESSAGE_MAP(CMSVCRTLibInstallerDlg, CDialogEx)
@@ -158,21 +164,72 @@ HCURSOR CMSVCRTLibInstallerDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+/**
+ * 설치 해야할 전체 갯수를 가져오는 기능.
+ * 
+ * \return - 설치해야하는 인스톨 갯수
+ */
+int CMSVCRTLibInstallerDlg::GetInstallCount()
+{
+	int nCount = 0;
+
+	if (m_btnVc2015.GetCheck() == BST_CHECKED) nCount++;
+	if (m_btnVc2013.GetCheck() == BST_CHECKED) nCount++;
+	if (m_btnVc2012.GetCheck() == BST_CHECKED) nCount++;
+	if (m_btnVc2010.GetCheck() == BST_CHECKED) nCount++;
+	if (m_btnVc2008.GetCheck() == BST_CHECKED) nCount++;
+	if (m_btnVc2005.GetCheck() == BST_CHECKED) nCount++;
+
+	return nCount;
+}
+
+void CMSVCRTLibInstallerDlg::InstallAll()
+{
+	int nCountInstall = GetInstallCount();
+
+	Install(&m_btnVc2015, L"https://aka.ms/vs/17/release/vc_redist.x86.exe");
+	Install(&m_btnVc2015, L"https://aka.ms/vs/17/release/vc_redist.x64.exe");
+
+	Install(&m_btnVc2013, L"https://aka.ms/highdpimfc2013x86enu");
+	Install(&m_btnVc2013, L"https://aka.ms/highdpimfc2013x64enu");
+
+	Install(&m_btnVc2012, L"https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe");
+	Install(&m_btnVc2012, L"https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe");
+
+	Install(&m_btnVc2010, L"https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe");
+	Install(&m_btnVc2010, L"https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe");
+
+	Install(&m_btnVc2008, L"https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe");
+	Install(&m_btnVc2008, L"https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe");
+	
+	Install(&m_btnVc2005, L"https://download.microsoft.com/download/1/E/4/1E4D029E-1D34-4CA8-B269-2CFEB91BD066/vcredist_x86.EXE");
+	Install(&m_btnVc2005, L"https://download.microsoft.com/download/1/E/4/1E4D029E-1D34-4CA8-B269-2CFEB91BD066/vcredist_x64.EXE");
+}
+
+BOOL CMSVCRTLibInstallerDlg::Install(CButton* pButton, std::wstring strInstallerURL)
+{
+	URLDownloadToFileW(NULL, strInstallerURL.c_str(), L"Install.exe", 0, NULL);
+
+	BOOL  bResult = FALSE;
+	if (pButton->GetCheck() == BST_CHECKED)
+	{
+		CMSVCRTManager mngr(L"Install.exe");
+		mngr.SetInstallOption(
+			//(int)CMSVCRTManager::eInstallType::eInstall |
+			//(int)CMSVCRTManager::eInstallType::eNoRestart |
+			(int)CMSVCRTManager::eInstallType::eQuiet
+		);
+		
+		bResult = mngr.Install();
+		
+	}
+
+	return bResult;
+}
+
 
 
 void CMSVCRTLibInstallerDlg::OnBnClickedButton1()
 {
-	std::wstring strPath = L"D:\\Test\\VC_redist.x86.exe";
-	//CMsiManager * mgr = new CMsiManager(L"D:\\Test\\VC_redist.x86.exe");
-	//mgr->Open();
-	//mgr->SetInstallOption();
-	//mgr->Install();
-
-	CMSVCRTManager mngr(strPath);
-	mngr.SetInstallOption(
-		(int)CMSVCRTManager::eInstallType::eInstall |
-		(int)CMSVCRTManager::eInstallType::eNoRestart |
-		(int)CMSVCRTManager::eInstallType::eQuiet
-	);
-	mngr.Install();
+	InstallAll();
 }
